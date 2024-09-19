@@ -54,7 +54,7 @@ namespace thehayk.secureapi.Controllers
         /// </summary>
         /// <param name="WordsQuantity">Quantity of random words in password. Mandatory param. Must be in [1, 50] range. </param>
         /// <param name="Separator"></param>
-        /// <param name="Quantity">>Quantity of passwords. Mandatory param. >2</param>
+        /// <param name="Quantity">>Quantity of passwords. Mandatory param. Must be in [2, 100] range.</param>
         /// <response code="200">Ok.</response>
         /// <response code="400">BadRequest.</response>
         /// <response code="500">Internal server error.</response>
