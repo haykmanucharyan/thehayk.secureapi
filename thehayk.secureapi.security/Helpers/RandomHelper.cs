@@ -9,6 +9,27 @@ namespace thehayk.secureapi.security.Helpers
             return RandomNumberGenerator.GetInt32(startInclusive, endExclusive);
         }
 
+        public static int[] GetSecureRandomInt32s(int startInclusive, int endExclusive, int quantity)
+        {
+            if(quantity < 2 || quantity > 5_000)
+                throw new ArgumentOutOfRangeException(nameof(quantity));
+
+            int[] nums = new int[quantity];
+
+            for (int i = 0; i < nums.Length; i++)
+                nums[i] = GetSecureRandomInt32(startInclusive, endExclusive);
+
+            return nums;
+        }
+
+        public static byte[] GetBytes(int quantity)
+        {
+            if (quantity < 1 || quantity > 500_000)
+                throw new ArgumentOutOfRangeException(nameof(quantity));
+
+            return RandomNumberGenerator.GetBytes(quantity);
+        }
+
         public static void Shuffle<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)

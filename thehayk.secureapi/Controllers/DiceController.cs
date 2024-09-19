@@ -26,17 +26,18 @@ namespace thehayk.secureapi.Controllers
         /// <summary>
         /// Gets a single dice password.
         /// </summary>
-        /// <param name="WordsQuantity">Quantity of random words in password. Mandatory param. Must be in [1, 50] range.</param>
+        /// <param name="WordsQuantity">Quantity of random words in password. Mandatory param. Should be in [1, 50] range.</param>
         /// <param name="Separator">Separator string for password. Words will be concatenated with this separator. Optional param, default is a single space.</param>
         /// <response code="200">Ok.</response>
         /// <response code="400">BadRequest.</response>
+        /// <response code="401">Unauthorized.</response>
         /// <response code="500">Internal server error.</response>
         /// <returns></returns>
         [HttpGet]
         public IActionResult Get([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator)
         {
             if (WordsQuantity < 1 || WordsQuantity > 50)
-                throw new ArgumentOutOfRangeException($"Invalid {nameof(WordsQuantity)} parameter.");
+                throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
             SinglePassResponse response = new SinglePassResponse()
             {
@@ -52,11 +53,12 @@ namespace thehayk.secureapi.Controllers
         /// <summary>
         /// Get a list of password by given quantity.
         /// </summary>
-        /// <param name="WordsQuantity">Quantity of random words in password. Mandatory param. Must be in [1, 50] range. </param>
+        /// <param name="WordsQuantity">Quantity of random words in password. Mandatory param. Should be in [1, 50] range. </param>
         /// <param name="Separator"></param>
-        /// <param name="Quantity">>Quantity of passwords. Mandatory param. Must be in [2, 100] range.</param>
+        /// <param name="Quantity">>Quantity of passwords. Mandatory param. Should be in [2, 100] range.</param>
         /// <response code="200">Ok.</response>
         /// <response code="400">BadRequest.</response>
+        /// <response code="401">Unauthorized.</response>
         /// <response code="500">Internal server error.</response>
         /// <returns></returns>
         [HttpGet]
@@ -64,10 +66,10 @@ namespace thehayk.secureapi.Controllers
         public IActionResult List([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator, [FromQuery][Required] int Quantity)
         {
             if (Quantity < 2 || Quantity > 100)
-                throw new ArgumentOutOfRangeException($"Invalid {nameof(Quantity)} parameter.");
+                throw new ArgumentOutOfRangeException(nameof(Quantity));
 
             if (WordsQuantity < 1 || WordsQuantity > 50)
-                throw new ArgumentOutOfRangeException($"Invalid {nameof(WordsQuantity)} parameter.");
+                throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
             MultiplePassResponse response = new MultiplePassResponse()
             {
