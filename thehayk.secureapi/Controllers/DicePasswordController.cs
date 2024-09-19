@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using thehayk.secureapi.DTO.Dice;
 using thehayk.secureapi.security.Dice;
 
 namespace thehayk.secureapi.Controllers
@@ -10,7 +9,7 @@ namespace thehayk.secureapi.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class DiceController : ControllerBase
+    public class DicePasswordController : ControllerBase
     {
         IDiceDictionary _diceDictionary;
 
@@ -18,7 +17,7 @@ namespace thehayk.secureapi.Controllers
         /// Ctor.
         /// </summary>
         /// <param name="diceDictionary">Injected dice dictionary.</param>
-        public DiceController(IDiceDictionary diceDictionary)
+        public DicePasswordController(IDiceDictionary diceDictionary)
         {
             _diceDictionary = diceDictionary;
         }
@@ -34,20 +33,12 @@ namespace thehayk.secureapi.Controllers
         /// <response code="500">Internal server error.</response>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator)
+        public string Get([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator)
         {
             if (WordsQuantity < 1 || WordsQuantity > 50)
                 throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
-            SinglePassResponse response = new SinglePassResponse()
-            {
-                Separator = Separator,
-                WordsQuantity = WordsQuantity
-            };
-
-            response.Password = _diceDictionary.GetPassword(WordsQuantity, Separator);
-
-            return Ok(response);
+            return _diceDictionary.GetPassword(WordsQuantity, Separator);
         }
 
         /// <summary>
@@ -63,7 +54,7 @@ namespace thehayk.secureapi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("List")]
-        public IActionResult List([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator, [FromQuery][Required] int Quantity)
+        public string[] List([FromQuery][Required] int WordsQuantity, [FromQuery] string Separator, [FromQuery][Required] int Quantity)
         {
             if (Quantity < 2 || Quantity > 100)
                 throw new ArgumentOutOfRangeException(nameof(Quantity));
@@ -71,16 +62,7 @@ namespace thehayk.secureapi.Controllers
             if (WordsQuantity < 1 || WordsQuantity > 50)
                 throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
-            MultiplePassResponse response = new MultiplePassResponse()
-            {
-                Quantity = Quantity,
-                WordsQuantity = WordsQuantity,
-                Separator = Separator
-            };
-
-            response.Passwords = _diceDictionary.GetPasswords(WordsQuantity, Separator, Quantity);
-
-            return Ok(response);
+            return _diceDictionary.GetPasswords(WordsQuantity, Separator, Quantity);
         }
     }
 }

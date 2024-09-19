@@ -3,6 +3,7 @@ using System.Reflection;
 using thehayk.secureapi.Configuration;
 using thehayk.secureapi.Middlewares;
 using thehayk.secureapi.security.Dice;
+using thehayk.secureapi.security.Password;
 using thehayk.secureapi.security.Random;
 
 string Version = Assembly.GetEntryAssembly().GetName().Version.ToString();
@@ -21,6 +22,10 @@ dictionary.Init(config.DictionaryFilePath, '\r', '\n', ' ', '\t');
 // random
 IRandomProvider randomProvider = new RandomProvider();
 builder.Services.AddSingleton(randomProvider);
+
+// password
+IPasswordProvider passwordProvider = new PasswordProvider();
+builder.Services.AddSingleton(passwordProvider);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
