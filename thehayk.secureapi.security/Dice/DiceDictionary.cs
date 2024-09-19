@@ -1,12 +1,19 @@
-﻿using thehayk.secureapi.security.Helpers;
+﻿using System.Text;
+using thehayk.secureapi.security.Helpers;
 
 namespace thehayk.secureapi.security.Dice
 {
     public class DiceDictionary : IDiceDictionary
     {
+        #region Fields
+
         Dictionary<string, string> _wordsMap;
         const string _base6 = "012345";
         int _length;
+
+        #endregion
+
+        #region Internal
 
         private string Int32ToBase6String(int value)
         {
@@ -43,6 +50,39 @@ namespace thehayk.secureapi.security.Dice
             }
         }
 
+        private static string GetDiceNumber(int digitsLength)
+        {
+            StringBuilder sb = new StringBuilder(digitsLength);
+
+            for (int i = 0; i < digitsLength; i++)
+                sb.Append(RandomHelper.GetSecureRandomInt32(0, 6).ToString());
+
+            return sb.ToString();
+        }
+
+        private static string[] GetDiceNumbers(int digitsLength, int quantity)
+        {
+            string[] nums = new string[quantity];
+
+            for (int i = 0; i < quantity; i++)
+                nums[i] = GetDiceNumber(digitsLength);
+
+            return nums;
+        }
+
+        public static string[] GetRandomDiceNumbers(int digitsLength, int quantity)
+        {
+            string[] nums = GetDiceNumbers(digitsLength, quantity);
+
+            RandomHelper.Shuffle(nums);
+
+            return nums;
+        }
+
+        #endregion
+
+        #region Interface implementation
+
         public void Init(string dictFilePath, params char[] separators)
         {
             List<string> words = FileHelper.ReadWords(dictFilePath, separators);
@@ -58,7 +98,7 @@ namespace thehayk.secureapi.security.Dice
             if (string.IsNullOrEmpty(separator))
                 separator = " ";
 
-            string[] nums = RandomHelper.GetRandomDiceNumbers(_length, wordsQuantity);
+            string[] nums = GetRandomDiceNumbers(_length, wordsQuantity);
 
             for (int i = 0; i < nums.Length; i++)
                 nums[i] = _wordsMap[nums[i]];
@@ -84,5 +124,7 @@ namespace thehayk.secureapi.security.Dice
 
             return passes;
         }
+
+        #endregion
     }
 }

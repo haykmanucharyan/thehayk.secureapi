@@ -1,31 +1,15 @@
 ﻿using System.Security.Cryptography;
-using System.Text;
 
 namespace thehayk.secureapi.security.Helpers
 {
     internal static class RandomHelper
     {
-        private static string GetDiceNumber(int digitsLength)
+        public static int GetSecureRandomInt32(int startInclusive, int endExclusive)
         {
-            StringBuilder sb = new StringBuilder(digitsLength);
-
-            for (int i = 0; i < digitsLength; i++)
-                sb.Append(RandomNumberGenerator.GetInt32(0, 6).ToString());
-
-            return sb.ToString();
+            return RandomNumberGenerator.GetInt32(startInclusive, endExclusive);
         }
 
-        private static string[] GetDiceNumbers(int digitsLength, int quantity)
-        {
-            string[] nums = new string[quantity];
-
-            for (int i = 0; i < quantity; i++)
-                nums[i] = GetDiceNumber(digitsLength);
-
-            return nums;
-        }
-
-        private static void Shuffle<T>(T[] array)
+        public static void Shuffle<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -39,15 +23,6 @@ namespace thehayk.secureapi.security.Helpers
                 array[i] = array[idx];
                 array[idx] = tmp;
             }
-        }
-
-        public static string[] GetRandomDiceNumbers(int digitsLength, int quantity)
-        {
-            string[] nums = GetDiceNumbers(digitsLength, quantity);
-
-            Shuffle(nums);
-
-            return nums;
         }
     }
 }
