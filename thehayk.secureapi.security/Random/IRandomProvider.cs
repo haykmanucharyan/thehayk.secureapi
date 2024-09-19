@@ -6,7 +6,7 @@
 
         int[] GetListOfInt32(int startInclusive, int endExclusive, int quantity);
 
-        string GetBytes(int quantity);
+        byte[] GetBytes(int quantity);
 
         Guid Uid();
 

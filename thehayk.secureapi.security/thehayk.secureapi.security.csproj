@@ -16,8 +16,4 @@ Hash, Symmetric/Assimetric encryption, Random numbers, UIDs, byte arrays, comple
     <Authors>Hayk Manucharyan</Authors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Hash\" />
-  </ItemGroup>
-
 </Project>

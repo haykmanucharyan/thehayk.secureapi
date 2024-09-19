@@ -3,6 +3,7 @@ using System.Reflection;
 using thehayk.secureapi.Configuration;
 using thehayk.secureapi.Middlewares;
 using thehayk.secureapi.security.Dice;
+using thehayk.secureapi.security.Hash;
 using thehayk.secureapi.security.Password;
 using thehayk.secureapi.security.Random;
 
@@ -26,6 +27,10 @@ builder.Services.AddSingleton(randomProvider);
 // password
 IPasswordProvider passwordProvider = new PasswordProvider();
 builder.Services.AddSingleton(passwordProvider);
+
+// hash
+IHashProvider hashProvider = new HashProvider();
+builder.Services.AddSingleton(hashProvider);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

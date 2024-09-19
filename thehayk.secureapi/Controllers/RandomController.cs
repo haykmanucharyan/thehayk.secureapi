@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using thehayk.secureapi.security.Helpers;
 using thehayk.secureapi.security.Random;
 
 namespace thehayk.secureapi.Controllers
@@ -109,7 +110,9 @@ namespace thehayk.secureapi.Controllers
             if (Quantity < 1 || Quantity > 10_000)
                 throw new ArgumentOutOfRangeException(nameof(Quantity));
 
-            return randomProvider.GetBytes(Quantity);
+            byte[] array = randomProvider.GetBytes(Quantity);
+
+            return ByteArrayHelper.ToHexString(array);
         }
     }
 }

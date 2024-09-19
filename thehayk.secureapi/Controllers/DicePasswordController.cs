@@ -11,7 +11,7 @@ namespace thehayk.secureapi.Controllers
     [Route("[controller]")]
     public class DicePasswordController : ControllerBase
     {
-        IDiceDictionary _diceDictionary;
+        IDiceDictionary diceDictionary;
 
         /// <summary>
         /// Ctor.
@@ -19,7 +19,7 @@ namespace thehayk.secureapi.Controllers
         /// <param name="diceDictionary">Injected dice dictionary.</param>
         public DicePasswordController(IDiceDictionary diceDictionary)
         {
-            _diceDictionary = diceDictionary;
+            this.diceDictionary = diceDictionary;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace thehayk.secureapi.Controllers
             if (WordsQuantity < 1 || WordsQuantity > 50)
                 throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
-            return _diceDictionary.GetPassword(WordsQuantity, Separator);
+            return diceDictionary.GetPassword(WordsQuantity, Separator);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace thehayk.secureapi.Controllers
             if (WordsQuantity < 1 || WordsQuantity > 50)
                 throw new ArgumentOutOfRangeException(nameof(WordsQuantity));
 
-            return _diceDictionary.GetPasswords(WordsQuantity, Separator, Quantity);
+            return diceDictionary.GetPasswords(WordsQuantity, Separator, Quantity);
         }
     }
 }

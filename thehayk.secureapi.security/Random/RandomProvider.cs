@@ -1,23 +1,15 @@
-﻿using System.Text;
-using thehayk.secureapi.security.Helpers;
+﻿using thehayk.secureapi.security.Helpers;
 
 namespace thehayk.secureapi.security.Random
 {
     public class RandomProvider : IRandomProvider
     {
-        public string GetBytes(int quantity)
+        public byte[] GetBytes(int quantity)
         {
             if(quantity < 1 || quantity > 10_000)
                 throw new ArgumentOutOfRangeException(nameof(quantity));
 
-            byte[] array = RandomHelper.GetBytes(quantity);
-
-            StringBuilder sb = new StringBuilder(array.Length * 2);
-
-            foreach (byte b in array)
-                sb.AppendFormat("{0:x2}", b);
-
-            return sb.ToString();
+            return RandomHelper.GetBytes(quantity);
         }
 
         public int GetInt32(int startInclusive, int endExclusive)
