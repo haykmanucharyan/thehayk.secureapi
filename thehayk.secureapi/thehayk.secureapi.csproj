@@ -5,6 +5,15 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Title>thehayk.secureapi</Title>
+    <Company>Hayk Manucharyan</Company>
+    <Authors>Hayk Manucharyan</Authors>
+    <Copyright>Hayk Manucharyan</Copyright>
+    <Description>Security provider API. 
+Hash, Symmetric/Assimetric encryption, Random numbers, UIDs, byte arrays, complex passwords, dice passwords.</Description>
+    <PackageProjectUrl>https://github.com/haykmanucharyan/thehayk.secureapi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/haykmanucharyan/thehayk.secureapi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,6 +4,20 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <Company>Hayk Manucharyan</Company>
+    <Description>Security providers. 
+Hash, Symmetric/Assimetric encryption, Random numbers, UIDs, byte arrays, complex passwords, dice passwords.</Description>
+    <Copyright>Hayk Manucharyan</Copyright>
+    <PackageProjectUrl>https://github.com/haykmanucharyan/thehayk.secureapi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/haykmanucharyan/thehayk.secureapi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>thehayk.secureapi.security</Title>
+    <Authors>Hayk Manucharyan</Authors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Hash\" />
+  </ItemGroup>
 
 </Project>
