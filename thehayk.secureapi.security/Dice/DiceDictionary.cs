@@ -90,6 +90,11 @@ namespace thehayk.secureapi.security.Dice
             InitEnumeratedMap(words);
         }
 
+        public void Init(List<string> words)
+        {
+            InitEnumeratedMap(words);
+        }
+
         public string GetPassword(int wordsQuantity, string separator)
         {
             if (wordsQuantity < 1 || wordsQuantity > 50)
