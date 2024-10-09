@@ -112,7 +112,7 @@ namespace thehayk.secureapi.Controllers
 
             byte[] array = randomProvider.GetBytes(Quantity);
 
-            return ByteArrayHelper.ToHexString(array);
+            return array.ToHexString();
         }
     }
 }

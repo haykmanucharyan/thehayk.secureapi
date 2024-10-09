@@ -15,6 +15,7 @@ Hash, Symmetric/Assimetric encryption, Random numbers, UIDs, byte arrays, comple
     <Title>thehayk.secureapi.security</Title>
     <Authors>Hayk Manucharyan</Authors>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

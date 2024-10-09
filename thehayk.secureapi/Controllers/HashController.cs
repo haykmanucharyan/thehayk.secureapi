@@ -57,7 +57,7 @@ namespace thehayk.secureapi.Controllers
             HashAlgorithmType hashAlgorithmType = hashProvider.GetHashAlgorithmType(Algorithm);
             byte[] hash = hashProvider.ComputeHash(hashAlgorithmType, Data);
             
-            return ByteArrayHelper.ToHexString(hash);
+            return hash.ToHexString();
         }
     }
 }
