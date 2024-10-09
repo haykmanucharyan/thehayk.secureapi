@@ -14,6 +14,14 @@ Hash, Symmetric/Assimetric encryption, Random numbers, UIDs, byte arrays, comple
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>thehayk.secureapi.security</Title>
     <Authors>Hayk Manucharyan</Authors>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
